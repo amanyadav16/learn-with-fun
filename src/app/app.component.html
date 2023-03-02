@@ -10,6 +10,9 @@
     ||myForm.controls.age?.touched)">
       Age is required
     </div>
+    <div *ngIf="myForm.get('age')?.hasError('gte')"  style="color: red;">
+        The number should be greater than 10
+      </div>
    
     <p>
       <button type="submit"  [disabled]="!myForm.valid">Submit</button>
