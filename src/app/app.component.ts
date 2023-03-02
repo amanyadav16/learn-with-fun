@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AppUtilityService } from './app.utility.service';
+
 
 @Component({
   selector: 'app-root',
@@ -9,18 +11,15 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, Validators }
 export class AppComponent {
   title = 'learn-with-fun';
 
+  constructor( private appUtility: AppUtilityService){}
+
   myForm = new FormGroup({
-    age: new FormControl('', [Validators.required, this.integerValue]),
+    age: new FormControl('', [Validators.required,this.appUtility.integerValidator]),
   })
 
 
   onSubmit() {
     console.log(this.myForm.value);
   }
-  integerValue(control: AbstractControl): ValidationErrors | null {
-
-    const v = +control.value;
-    return v%1===0?null:{ 'integerValue': true}
-
-  }
+  
 }

@@ -10,8 +10,8 @@
     ||myForm.controls.age?.touched)">
       Age is required
     </div>
-    <div *ngIf="myForm.get('age')?.hasError('integerValue')"  style="color: red;">
-        should be "integer"
+    <div *ngIf="myForm.get('age')?.hasError('integerValidator')"  style="color: red;">
+        {{myForm.get('age')!.errors?.['errorMessage']}}
       </div>
    
     <p>
