@@ -14,9 +14,7 @@ declare const awscredentials: any;
  */
 export class AppUtilityService {
   integerValidator(control: AbstractControl): ValidationErrors | null {
-
     const v = +control.value;
     return v%1===0?null:{ 'integerValidator': true , errorMessage:"should be \"integer\""}
-
   }
 }
