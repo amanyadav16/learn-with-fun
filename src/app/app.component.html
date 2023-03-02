@@ -1,7 +1,7 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
  
     <p>
-      <label for="age">First Name </label>
+      <label for="age">Age </label>
       <input type="number" id="age" name="age" formControlName="age">
     </p>
     <div
@@ -10,8 +10,8 @@
     ||myForm.controls.age?.touched)">
       Age is required
     </div>
-    <div *ngIf="myForm.get('age')?.hasError('gte')"  style="color: red;">
-        The number should be greater than 10
+    <div *ngIf="myForm.get('age')?.hasError('integerValue')"  style="color: red;">
+        should be "integer"
       </div>
    
     <p>

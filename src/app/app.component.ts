@@ -10,30 +10,17 @@ export class AppComponent {
   title = 'learn-with-fun';
 
   myForm = new FormGroup({
-    age: new FormControl('',[Validators.required,this.gte]),
+    age: new FormControl('', [Validators.required, this.integerValue]),
   })
- 
- 
+
+
   onSubmit() {
     console.log(this.myForm.value);
   }
-  gte(control: AbstractControl): ValidationErrors | null {
- 
-    const v=+control.value;
+  integerValue(control: AbstractControl): ValidationErrors | null {
 
-    if(v<10){
-      return {'gte':true, 'requiredValue': 10}
-    }
- 
-    // if (isNaN(v)) {
-    //   return { 'gte': true, 'requiredValue': 10 }
-    // }      
- 
-    // if (v <= 10) {
-    //   return { 'gte': true, 'requiredValue': 10 }
-    // } 
- 
-    return null
- 
-}
+    const v = +control.value;
+    return v%1===0?null:{ 'integerValue': true}
+
+  }
 }
