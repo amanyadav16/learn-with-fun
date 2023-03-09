@@ -10,6 +10,7 @@ export class AppComponent {
   title = 'learn-with-fun';
   arr=['aman','delhi','India']
   reg='123@google';
+  myName='Aman Yadav'
 
   constructor(private mockService:MockService){}
 
@@ -23,5 +24,9 @@ export class AppComponent {
 
   getBoolValue(){
     return this.mockService.getBoolValue();
+  }
+
+  changeName(){
+    this.myName='Virat Kohli'
   }
 }

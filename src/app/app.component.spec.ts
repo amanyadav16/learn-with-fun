@@ -1,12 +1,15 @@
+import { DebugElement } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { MockService } from './mock.service';
 
 describe('AppComponent', () => {
-  let fixture;
+  let fixture:any;
   let app:AppComponent;
   let mockService:MockService;
+  let el: DebugElement;
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
@@ -21,7 +24,7 @@ describe('AppComponent', () => {
     fixture = TestBed.createComponent(AppComponent);
     app = fixture.componentInstance;
     mockService=TestBed.inject(MockService);
-
+    el = fixture.debugElement.query(By.css('.my-name'));
   });
 
   it('should create the app', () => {
@@ -45,8 +48,6 @@ describe('AppComponent', () => {
     expect(app.arr).toContain('aman');
     expect(app.arr).toHaveSize(3);
   });
-
-  
 
   it(`throw error`, () => {
     expect(app.returnSomething).toThrow(new Error("my custom error"))
@@ -72,10 +73,12 @@ describe('AppComponent', () => {
     expect(mockService.getBoolValue).toHaveBeenCalled();
   });
 
-    // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  //   expect(compiled.querySelector('.content span')?.textContent).toContain('learn-with-fun app is running!');
-  // });
+   it('change detection', () => {
+    expect(el.nativeElement.textContent.trim()).toBe('');
+    fixture.detectChanges()
+    expect(el.nativeElement.textContent.trim()).toBe('Aman Yadav');
+    app.changeName();
+    fixture.detectChanges()
+    expect(el.nativeElement.textContent.trim()).toBe('Virat Kohli');
+  });
 });

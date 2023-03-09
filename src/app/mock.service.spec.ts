@@ -13,4 +13,8 @@ describe('MockService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('sservice', () => {
+    expect(service.getBoolValue()).toBeTruthy();
+  });
 });
